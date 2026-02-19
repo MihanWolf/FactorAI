@@ -6,11 +6,11 @@ var item_ui_scene: PackedScene = preload("res://Scenes/UI/garbage_ui.tscn")
 var current_item: Node2D = null
 var current_ui: CanvasLayer = null
 
-@onready var storage_ui = $Node2D/inventory_ui
-@onready var storage_node = $Node2D
+@onready var storage_ui = $Cart/inventory_ui
+@onready var storage_node = $Cart
 @onready var inventory_ui = $inventory_ui
 @onready var item_zone: InteractionZone = $Interaction_zone
-@onready var telega_zone: InteractionZone = $Node2D/Interaction_zone
+@onready var telega_zone: InteractionZone = $Cart/Interaction_zone
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_focus_next"):

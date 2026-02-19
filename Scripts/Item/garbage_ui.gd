@@ -17,9 +17,9 @@ func _ready():
 	burn_button.pressed.connect(func(): burn_pressed.emit())
 	recycle_button.pressed.connect(func(): recycle_pressed.emit())
 	take_button.pressed.connect(func(): take_pressed.emit())
+	hide()
 	
 func show_item(instance: ItemInstance):
 	item_name_label.text = instance.data.item_name
 	item_quality_label.text = instance.quality
 	item_disc_label.text = instance.disc
-	show()

@@ -1,15 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp5r0u1hxteql"]
+[gd_scene load_steps=7 format=3 uid="uid://dp5r0u1hxteql"]
 
 [ext_resource type="Script" uid="uid://dgilyn3ap76sb" path="res://Scripts/scene.gd" id="1_jp0d8"]
+[ext_resource type="PackedScene" uid="uid://b6mlfxqldfq6r" path="res://Scenes/Player/Player.tscn" id="2_o8g73"]
 [ext_resource type="Script" uid="uid://bvgy7a4tb0eya" path="res://Scripts/storage_node.gd" id="2_s3lxa"]
 [ext_resource type="PackedScene" uid="uid://88gkl2kqqwpq" path="res://Scenes/UI/inventory_ui.tscn" id="3_1o454"]
+[ext_resource type="PackedScene" uid="uid://nr8g1kv7i163" path="res://Scenes/interaction_zone.tscn" id="4_v3fvj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3fvj"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_jp0d8")
 
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_o8g73")]
+position = Vector2(453, 266)
+
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(900, 0)
+position = Vector2(575, -133)
 script = ExtResource("2_s3lxa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(-212.99998, 328.99997)
+scale = Vector2(8.87, 8.87)
+shape = SubResource("RectangleShape2D_v3fvj")
+
+[node name="Interaction_zone" parent="Node2D" instance=ExtResource("4_v3fvj")]
+position = Vector2(-214, 331.00003)
+scale = Vector2(10, 10)
+ui_scene = ExtResource("3_1o454")
 
 [node name="inventory_ui" parent="Node2D" instance=ExtResource("3_1o454")]
 offset = Vector2(800, 0)
@@ -18,3 +37,7 @@ transform = Transform2D(1, 0, 0, 1, 800, 0)
 [node name="inventory_ui" parent="." instance=ExtResource("3_1o454")]
 offset = Vector2(500, 0)
 transform = Transform2D(1, 0, 0, 1, 500, 0)
+
+[node name="Interaction_zone" parent="." instance=ExtResource("4_v3fvj")]
+position = Vector2(264, 324)
+scale = Vector2(10, 10)

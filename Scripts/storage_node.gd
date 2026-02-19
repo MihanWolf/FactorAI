@@ -2,6 +2,7 @@ extends Node2D
 
 var storage: Storage = Storage.new()
 @export var slot_count: int = 6
+@onready var inventory_ui
 
 func _ready():
 	for i in slot_count:

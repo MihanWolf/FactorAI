@@ -32,7 +32,9 @@ func disassemble():
 	queue_free()
 
 func take():
-	# тут будет логика перемещения предмета в инвентарь
+	if PlayerInventory.storage.is_full():
+		print("Инвентарь полон")
+		return
 	PlayerInventory.add_item(item_instance)
 	item_removed.emit()
 	queue_free()

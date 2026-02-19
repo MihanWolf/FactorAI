@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://ueyfaw6oaq7a"]
+
+[ext_resource type="Script" uid="uid://bnovyu5ek3r0t" path="res://Resources/disassemble_entry.gd" id="1_3wetj"]
+[ext_resource type="Script" uid="uid://d2csex3mtid58" path="res://Scripts/Item/item_data.gd" id="1_auw53"]
+[ext_resource type="Texture2D" uid="uid://dvwpqhelccome" path="res://Sprites/d51b0bbf9390c631c383b6172ceb9b4a.jpg" id="2_6b6le"]
+[ext_resource type="Resource" uid="uid://nesiyd4fx7b2" path="res://Resources/materials/metal_resource.tres" id="2_x5yfj"]
+
+[sub_resource type="Resource" id="Resource_pprsu"]
+script = ExtResource("1_3wetj")
+material = ExtResource("2_x5yfj")
+count_min = -39
+count_max = 118
+metadata/_custom_type_script = "uid://bnovyu5ek3r0t"
+
+[resource]
+script = ExtResource("1_auw53")
+item_name = "XZ"
+disc = "2e2 ывыв"
+group = "musordev"
+count = 55
+sprite = ExtResource("2_6b6le")
+disassemble_materials = Array[ExtResource("1_3wetj")]([SubResource("Resource_pprsu")])
+metadata/_custom_type_script = "uid://d2csex3mtid58"

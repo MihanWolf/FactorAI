@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaterialData" load_steps=3 format=3 uid="uid://nesiyd4fx7b2"]
+
+[ext_resource type="Script" uid="uid://dgt63t8f35erk" path="res://Resources/material_data.gd" id="1_n02do"]
+[ext_resource type="Texture2D" uid="uid://bk2lsw28t475k" path="res://Sprites/MetalShelf.png" id="2_x0wot"]
+
+[resource]
+script = ExtResource("1_n02do")
+material_name = "Металл"
+sprite = ExtResource("2_x0wot")
+metadata/_custom_type_script = "uid://dgt63t8f35erk"

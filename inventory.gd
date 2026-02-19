@@ -2,8 +2,6 @@ extends Node
 
 var storage: Storage = Storage.new()
 
-signal item_added(item: ItemInstance)
-signal item_removed(item: ItemInstance)
 
 func _ready():
 	for i in 2:

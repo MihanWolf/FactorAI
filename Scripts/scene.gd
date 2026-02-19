@@ -6,7 +6,7 @@ var item_ui_scene: PackedScene = preload("res://Scenes/UI/garbage_ui.tscn")
 var current_item: Node2D = null
 var current_ui: CanvasLayer = null
 
-@onready var inventory_ui = $inventory_ui
+@onready var inventory_ui = $CanvasLayer/inventory_ui
 @onready var item_zone: InteractionZone = $Interaction_zone
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -94,7 +94,8 @@ func spawn_item():
 	current_item.item_removed.connect(spawn_item)
 
 func _on_recycle_pressed():
-	# Ищем телегу в сцене и кладём туда
-	var cart = get_tree().get_first_node_in_group("cart")
+	var cart = _get_cart_in_zone()
 	if cart:
 		current_item.send_to_storage(cart.storage)
+	else:
+		print("Телега не в зоне")

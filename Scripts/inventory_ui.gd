@@ -1,5 +1,4 @@
-# inventory_ui.gd
-extends CanvasLayer
+extends Control
 
 @onready var title_label = $VBoxContainer/Label
 @onready var slots_container = $VBoxContainer/HBoxContainer

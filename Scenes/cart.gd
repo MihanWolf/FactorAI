@@ -44,15 +44,13 @@ func _on_player_exited(body):
 
 func pickup():
 	is_carried = true
-	static_body.set_deferred("disabled", true)  # выключаем коллизию
+	collision_shape.set_deferred("disabled", true)
 	picked_up.emit(self)
 
 func drop(world_position: Vector2):
 	is_carried = false
-	# Reparent обратно в мир
 	var world = get_tree().current_scene
-	var global = global_position
 	reparent(world)
 	global_position = world_position
-	static_body.set_deferred("disabled", false)
+	collision_shape.set_deferred("disabled", false)
 	dropped.emit(self)

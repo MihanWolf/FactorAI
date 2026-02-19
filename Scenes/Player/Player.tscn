@@ -4,12 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://bh7j3wn81nuve" path="res://Sprites/Player.png" id="2_ft8w5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h54ih"]
+radius = 108.94
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+texture_filter = 3
 script = ExtResource("1_s0eop")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(19, 33)
 shape = SubResource("CircleShape2D_h54ih")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-10, -3)
+scale = Vector2(5, 5)
 texture = ExtResource("2_ft8w5")
+
+[node name="CartHoldPoint" type="Marker2D" parent="."]
+position = Vector2(52, 84)

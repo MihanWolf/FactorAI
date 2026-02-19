@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 signal interact_pressed
 
+
 @export var speed: float = 200.0
 @onready var cart_hold_point = $CartHoldPoint
 
@@ -47,9 +48,11 @@ func unregister_zone(zone: InteractionZone):
 
 func _pickup_cart(cart: Cart):
 	carried_cart = cart
+	cart.get_node("inventory_ui").hide()  # прячем перед reparent
 	cart.pickup()
-	cart.reparent(self)
-	cart.position = Vector2(40, 0)  # смещение от игрока
+	cart.reparent(self, false)
+	var offset = cart.get_node("GrabPoint").position
+	cart.position = cart_hold_point.position - offset
 
 func _drop_cart():
 	var drop_pos = carried_cart.global_position

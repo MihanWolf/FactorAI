@@ -1,20 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://nr8g1kv7i163"]
+[gd_scene load_steps=3 format=3 uid="uid://nr8g1kv7i163"]
 
 [ext_resource type="Script" uid="uid://b4xpxmii54r71" path="res://Scripts/interaction_zone.gd" id="1_lh65e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpyed"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_lh65e"]
 
 [node name="Interaction_zone" type="Area2D"]
 script = ExtResource("1_lh65e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fpyed")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-texture = SubResource("CanvasTexture_lh65e")

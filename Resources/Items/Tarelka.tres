@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d2csex3mtid58" path="res://Scripts/Item/item_data.gd" id="1_vajc2"]
 [ext_resource type="Script" uid="uid://bnovyu5ek3r0t" path="res://Resources/disassemble_entry.gd" id="1_yjuf6"]
-[ext_resource type="Texture2D" uid="uid://cjkvuixr6ek7i" path="res://Sprites/858ec399e0ced43160bdb169cbf774a8.jpg" id="2_0lykf"]
 [ext_resource type="Resource" uid="uid://nesiyd4fx7b2" path="res://Resources/materials/metal_resource.tres" id="2_7adhn"]
+[ext_resource type="Texture2D" uid="uid://cysn5i5j2k4c4" path="res://Sprites/Posuda-Photoroom.png" id="4_qb7tj"]
 
 [sub_resource type="Resource" id="Resource_nffyl"]
 script = ExtResource("1_yjuf6")
@@ -16,6 +16,6 @@ item_name = "Тарелка"
 disc = "Посуда хуюда"
 group = "Бытовуха"
 count = 1
-sprite = ExtResource("2_0lykf")
+sprite = ExtResource("4_qb7tj")
 disassemble_materials = Array[ExtResource("1_yjuf6")]([SubResource("Resource_nffyl")])
 metadata/_custom_type_script = "uid://d2csex3mtid58"

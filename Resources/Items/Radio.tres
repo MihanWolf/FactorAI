@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bnovyu5ek3r0t" path="res://Resources/disassemble_entry.gd" id="1_jbcka"]
 [ext_resource type="Script" uid="uid://d2csex3mtid58" path="res://Scripts/Item/item_data.gd" id="1_qrr4c"]
 [ext_resource type="Resource" uid="uid://nesiyd4fx7b2" path="res://Resources/materials/metal_resource.tres" id="2_mphyb"]
-[ext_resource type="Texture2D" uid="uid://bw8sfewxdke14" path="res://Sprites/2ad7857d18600a07ca4114339678df7b.jpg" id="2_xesha"]
+[ext_resource type="Texture2D" uid="uid://be8u6o01ryjdf" path="res://Sprites/Radio-Photoroom.png" id="4_inct0"]
 
 [sub_resource type="Resource" id="Resource_eu63j"]
 script = ExtResource("1_jbcka")
@@ -16,6 +16,6 @@ item_name = "Радио"
 disc = "Советское ебаное"
 group = "Электронника"
 count = 1
-sprite = ExtResource("2_xesha")
+sprite = ExtResource("4_inct0")
 disassemble_materials = Array[ExtResource("1_jbcka")]([SubResource("Resource_eu63j")])
 metadata/_custom_type_script = "uid://d2csex3mtid58"

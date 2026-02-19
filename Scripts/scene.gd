@@ -48,12 +48,13 @@ func _ready() -> void:
 	spawn_item()
 
 func _get_cart_in_zone() -> Cart:
-	for body in item_zone.get_overlapping_bodies():
-		if body.get_parent() is Cart:
-			return body.get_parent()
+	for area in item_zone.get_overlapping_areas():
+		if area.get_parent() is Cart:
+			return area.get_parent()
 	return null
 	
 func _on_area_entered_item_zone(area: Area2D):
+	print("area entered: ", area.name, " parent: ", area.get_parent().name)
 	var cart = area.get_parent()
 	if cart is Cart and item_zone.player_inside:
 		cart.inventory_ui.show()

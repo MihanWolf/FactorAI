@@ -6,63 +6,63 @@ var item_ui_scene: PackedScene = preload("res://Scenes/UI/garbage_ui.tscn")
 var current_item: Node2D = null
 var current_ui: CanvasLayer = null
 
-@onready var storage_ui = $Cart/inventory_ui
-@onready var storage_node = $Cart
 @onready var inventory_ui = $inventory_ui
 @onready var item_zone: InteractionZone = $Interaction_zone
-@onready var telega_zone: InteractionZone = $Cart/Interaction_zone
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_focus_next"):
-		if inventory_ui.visible:
-			inventory_ui.hide()
-		else:
-			inventory_ui.show()
+	if event.is_action_pressed("inventory"):
+		inventory_ui.visible = not inventory_ui.visible
 
 func _ready() -> void:
 	PlayerInventory.storage.storage_name = "Инвентарь"
-	storage_node.storage.storage_name = "Телега"
-	
+	item_zone.area_entered.connect(_on_area_entered_item_zone)
+	item_zone.area_exited.connect(_on_area_exited_item_zone)
 	inventory_ui.init(PlayerInventory.storage)
-	storage_ui.init(storage_node.storage)
 	inventory_ui.hide()
-	storage_ui.hide()
-		
-	telega_zone.player_interacted.connect(func():
-		storage_ui.show()
-	)
-	telega_zone.player_exited.connect(func():
-		storage_ui.hide()
-	)
 	
 	item_zone.player_interacted.connect(func():
 		if current_ui:
 			current_ui.show()
-		# если телега в радиусе item_zone — показываем и её
-		if _is_storage_in_item_zone():
-			storage_ui.show()
+		var cart = _get_cart_in_zone()
+		if cart:
+			cart.inventory_ui.show()
 	)
 	item_zone.player_exited.connect(func():
 		if current_ui:
 			current_ui.hide()
-		# скрываем UI телеги только если игрок вышел и из storage_zone тоже
-		if not telega_zone.player_inside:
-			storage_ui.hide()
+		var cart = _get_cart_in_zone()
+		if cart:
+			cart.inventory_ui.hide()
 	)
+	item_zone.player_entered.connect(func():
+		var cart = _get_cart_in_zone()
+		if cart:
+			cart.inventory_ui.show()
+	)
+	item_zone.player_exited.connect(func():
+		var cart = _get_cart_in_zone()
+		if cart:
+			cart.inventory_ui.hide()
+)
 	
 	spawn_item()
+
+func _get_cart_in_zone() -> Cart:
+	for body in item_zone.get_overlapping_bodies():
+		if body.get_parent() is Cart:
+			return body.get_parent()
+	return null
 	
-	
-	
-	
-func _is_storage_in_item_zone() -> bool:
-	var bodies = item_zone.get_overlapping_bodies()
-	for body in bodies:
-		if body.get_parent() == storage_node:
-			return true
-	return false
-	
-	
+func _on_area_entered_item_zone(area: Area2D):
+	var cart = area.get_parent()
+	if cart is Cart and item_zone.player_inside:
+		cart.inventory_ui.show()
+
+func _on_area_exited_item_zone(area: Area2D):
+	var cart = area.get_parent()
+	if cart is Cart:
+		cart.inventory_ui.hide()
+
 func spawn_item():
 	if current_ui:
 		current_ui.queue_free()
@@ -87,11 +87,13 @@ func spawn_item():
 		current_ui.hide()
 	
 	current_ui.burn_pressed.connect(current_item.burn)
-	#current_ui.disassemble_pressed.connect(current_item.disassemble)
 	current_ui.take_pressed.connect(current_item.take)
-	current_ui.recycle_pressed.connect(_on_recycle_pressed)  # отдельная кнопка переработки
+	current_ui.recycle_pressed.connect(_on_recycle_pressed)
 	
 	current_item.item_removed.connect(spawn_item)
 
 func _on_recycle_pressed():
-	current_item.send_to_storage(storage_node.storage)
+	# Ищем телегу в сцене и кладём туда
+	var cart = get_tree().get_first_node_in_group("cart")
+	if cart:
+		current_item.send_to_storage(cart.storage)

@@ -12,8 +12,8 @@ var player_in_range: bool = false
 
 @onready var static_body = $StaticBody2D
 @onready var collision_shape = $StaticBody2D/CollisionShape2D 
-@onready var interaction_zone = $InteractionZone
-@onready var inventory_ui = $InventoryUI
+@onready var interaction_zone = $Interaction_zone
+@onready var inventory_ui = $inventory_ui
 
 func _ready():
 	add_to_group("cart")
@@ -22,9 +22,16 @@ func _ready():
 		var slot = InventorySlot.new()
 		slot.accepted_type = ItemData.ItemType.ITEM
 		storage.slots.append(slot)
+		
+	inventory_ui.init(storage)
+	inventory_ui.hide()
 	
 	interaction_zone.body_entered.connect(_on_player_entered)
 	interaction_zone.body_exited.connect(_on_player_exited)
+	interaction_zone.player_interacted.connect(_on_interact)
+
+func _on_interact():
+	inventory_ui.visible = not inventory_ui.visible
 
 func _on_player_entered(body):
 	if body.is_in_group("player"):
@@ -33,6 +40,7 @@ func _on_player_entered(body):
 func _on_player_exited(body):
 	if body.is_in_group("player"):
 		player_in_range = false
+		inventory_ui.hide()
 
 func pickup():
 	is_carried = true

@@ -11,24 +11,12 @@ signal take_pressed
 @onready var recycle_button = $Panel/HBoxContainer/Button2
 @onready var take_button = $Panel/HBoxContainer/Button3
 
-
 func _ready():
-	print("garbage_ui ready")
-	take_button.disabled = false
-	burn_button.pressed.connect(func(): 
-		print("burn button pressed")
-		burn_pressed.emit()
-	)
-	recycle_button.pressed.connect(func(): 
-		print("recycle button pressed")
-		recycle_pressed.emit()
-	)
-	take_button.pressed.connect(func(): 
-		print("take button pressed")
-		take_pressed.emit()
-	)
+	burn_button.pressed.connect(func(): burn_pressed.emit())
+	recycle_button.pressed.connect(func(): recycle_pressed.emit())
+	take_button.pressed.connect(func(): take_pressed.emit())
 	hide()
-	
+
 func show_item(instance: ItemInstance):
 	item_name_label.text = instance.data.item_name
 	item_quality_label.text = instance.quality

@@ -8,7 +8,7 @@ func _ready() -> void:
 	PlayerInventory.storage.storage_name = "Инвентарь"
 	inventory_ui.init(PlayerInventory.storage)
 	inventory_ui.hide()
-	
+
 	conveyor_zone.canvas_layer = canvas_layer
 	conveyor_zone.spawn_item()
 

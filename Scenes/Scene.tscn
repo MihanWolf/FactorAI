@@ -1,25 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp5r0u1hxteql"]
+[gd_scene load_steps=6 format=3 uid="uid://dp5r0u1hxteql"]
 
 [ext_resource type="Script" uid="uid://dgilyn3ap76sb" path="res://Scripts/scene.gd" id="1_jp0d8"]
 [ext_resource type="PackedScene" uid="uid://b6mlfxqldfq6r" path="res://Scenes/Player/Player.tscn" id="2_o8g73"]
 [ext_resource type="PackedScene" uid="uid://88gkl2kqqwpq" path="res://Scenes/UI/inventory_ui.tscn" id="3_1o454"]
 [ext_resource type="PackedScene" uid="uid://c87px2k23tvcl" path="res://Scenes/cart.tscn" id="3_qswnl"]
-[ext_resource type="PackedScene" uid="uid://nr8g1kv7i163" path="res://Scenes/interaction_zone.tscn" id="4_v3fvj"]
-[ext_resource type="Texture2D" uid="uid://b78vhc48r3w2b" path="res://Sprites/conveer-Photoroom.png" id="5_qswnl"]
+[ext_resource type="PackedScene" uid="uid://d1lfdpcpbb17f" path="res://Scenes/conveyor.tscn" id="5_v3fvj"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_jp0d8")
 
 [node name="Cart" parent="." instance=ExtResource("3_qswnl")]
 position = Vector2(291, 157)
-
-[node name="Interaction_zone" parent="." instance=ExtResource("4_v3fvj")]
-position = Vector2(172, 485)
-scale = Vector2(15, 15)
-
-[node name="Sprite2D" type="Sprite2D" parent="Interaction_zone"]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_qswnl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -30,3 +21,9 @@ offset_right = 719.0
 offset_bottom = 532.0
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_o8g73")]
+speed = 500.0
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+
+[node name="Conveyor" parent="." instance=ExtResource("5_v3fvj")]
+position = Vector2(556, 303)

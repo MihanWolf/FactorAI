@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://b7ybtx15g6jlh" path="res://Scripts/Item/item.gd" id="1_ys0gr"]
 
 [node name="Item" type="Node2D"]
+z_index = 2
+scale = Vector2(3, 3)
 script = ExtResource("1_ys0gr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1lfdpcpbb17f"]
+
+[ext_resource type="Script" uid="uid://cg75q5ign8v02" path="res://conveyor.gd" id="1_p60iw"]
+[ext_resource type="Texture2D" uid="uid://b78vhc48r3w2b" path="res://Sprites/conveer-Photoroom.png" id="2_4lxgk"]
+[ext_resource type="PackedScene" uid="uid://nr8g1kv7i163" path="res://Scenes/interaction_zone.tscn" id="2_gfhwh"]
+
+[node name="Conveyor" type="Node2D"]
+script = ExtResource("1_p60iw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4lxgk")
+
+[node name="Interaction_zone" parent="." instance=ExtResource("2_gfhwh")]
+scale = Vector2(20, 20)

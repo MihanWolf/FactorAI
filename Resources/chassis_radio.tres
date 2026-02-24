@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ComponentData" load_steps=2 format=3 uid="uid://car7njd02yoyy"]
+
+[ext_resource type="Script" uid="uid://b040qtd007786" path="res://component_data.gd" id="1_bqb2h"]
+
+[resource]
+script = ExtResource("1_bqb2h")
+component_name = "Советский корпус"
+color_regions = Array[String](["main", "stripe"])
+metadata/_custom_type_script = "uid://b040qtd007786"

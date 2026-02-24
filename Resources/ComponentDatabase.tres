@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ComponentDatabase" load_steps=5 format=3 uid="uid://bbs6y3eoe0o0"]
+
+[ext_resource type="Script" uid="uid://b040qtd007786" path="res://component_data.gd" id="1_w1ow0"]
+[ext_resource type="Resource" uid="uid://car7njd02yoyy" path="res://Resources/chassis_radio.tres" id="2_dro2d"]
+[ext_resource type="Resource" uid="uid://3g8qts2qy5ln" path="res://Resources/Wire.tres" id="3_dro2d"]
+[ext_resource type="Script" uid="uid://ceakm1srns7m5" path="res://component_database.gd" id="3_imsf2"]
+
+[resource]
+script = ExtResource("3_imsf2")
+components = Array[ExtResource("1_w1ow0")]([ExtResource("2_dro2d"), ExtResource("3_dro2d")])
+metadata/_custom_type_script = "uid://ceakm1srns7m5"

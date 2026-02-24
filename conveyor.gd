@@ -3,6 +3,7 @@ extends Node2D
 
 var item_scene: PackedScene = preload("res://Scenes/item.tscn")
 var item_database: ItemDatabase = preload("res://Resources/ItemDatabase.tres")
+var component_database: ComponentDatabase = preload("res://Resources/ComponentDatabase.tres")  # НОВОЕ
 var item_ui_scene: PackedScene = preload("res://Scenes/UI/garbage_ui.tscn")
 
 var current_item: Node2D = null
@@ -14,8 +15,7 @@ var canvas_layer: CanvasLayer = null
 func _ready() -> void:
 	interaction_zone.area_entered.connect(_on_area_entered)
 	interaction_zone.area_exited.connect(_on_area_exited)
-	
-	interaction_zone.player_entered.connect(_on_player_entered)  # ← добавь
+	interaction_zone.player_entered.connect(_on_player_entered)
 	interaction_zone.player_interacted.connect(_on_player_interacted)
 	interaction_zone.player_exited.connect(_on_player_exited)
 	
@@ -24,56 +24,35 @@ func _ready() -> void:
 # ---- Спавн ----
 
 func spawn_item() -> void:
-	print("spawn_item start")
-	
 	if current_ui:
-		print("freeing old ui")
 		current_ui.queue_free()
 		current_ui = null
 	if current_item:
-		print("freeing old item")
 		current_item.queue_free()
 		current_item = null
-	
-	print("creating instance")
+
 	var data = item_database.items.pick_random()
-	var instance = ItemInstance.create_random(data)
-	print("instance created: ", instance.data.item_name)
-	
-	print("creating item node")
+	var pool = component_database.build_pool()          # НОВОЕ
+	var instance = ItemInstance.create_random(data, pool)  # ИЗМЕНЕНО
+
 	current_item = item_scene.instantiate()
 	current_item.item_instance = instance
 	current_item.position = get_viewport().get_visible_rect().size / 2
 	get_tree().current_scene.add_child(current_item)
-	print("item node added to scene")
-	
-	print("creating ui")
-	current_ui = item_ui_scene.instantiate()
-	print("canvas_layer is: ", canvas_layer)
-	canvas_layer.add_child(current_ui)
-	print("ui added to canvas_layer, waiting ready")
-	
-	current_ui = item_ui_scene.instantiate()
-	canvas_layer.add_child(current_ui)
 
+	current_ui = item_ui_scene.instantiate()
+	canvas_layer.add_child(current_ui)
 	if not current_ui.is_node_ready():
 		await current_ui.ready
 
-	print("ui ready")
-	
 	current_ui.show_item(instance)
-	print("show_item called")
-	
 	_update_ui_visibility()
-	print("visibility updated")
-	
+
 	current_ui.burn_pressed.connect(current_item.burn)
 	current_ui.take_pressed.connect(current_item.take)
 	current_ui.recycle_pressed.connect(_on_recycle_pressed)
-	print("signals connected")
-	
+
 	current_item.item_removed.connect(spawn_item)
-	print("spawn_item done")
 # ---- Взаимодействие с зоной ----
 
 func _on_player_entered() -> void:

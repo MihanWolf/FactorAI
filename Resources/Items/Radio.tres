@@ -1,9 +1,24 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://cji4cy87qo48c"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=9 format=3 uid="uid://cji4cy87qo48c"]
 
 [ext_resource type="Script" uid="uid://bnovyu5ek3r0t" path="res://Resources/disassemble_entry.gd" id="1_jbcka"]
+[ext_resource type="Script" uid="uid://u7s2nsmlp06b" path="res://component_slot_data.gd" id="1_qouq0"]
 [ext_resource type="Script" uid="uid://d2csex3mtid58" path="res://Scripts/Item/item_data.gd" id="1_qrr4c"]
 [ext_resource type="Resource" uid="uid://nesiyd4fx7b2" path="res://Resources/materials/metal_resource.tres" id="2_mphyb"]
 [ext_resource type="Texture2D" uid="uid://be8u6o01ryjdf" path="res://Sprites/Radio-Photoroom.png" id="4_inct0"]
+
+[sub_resource type="Resource" id="Resource_cgc42"]
+script = ExtResource("1_qouq0")
+slot_id = "chassis"
+slot_label = "Корпус"
+accepted_types = Array[int]([0])
+metadata/_custom_type_script = "uid://u7s2nsmlp06b"
+
+[sub_resource type="Resource" id="Resource_qouq0"]
+script = ExtResource("1_qouq0")
+slot_id = "wire"
+slot_label = "Провода"
+accepted_types = Array[int]([2])
+metadata/_custom_type_script = "uid://u7s2nsmlp06b"
 
 [sub_resource type="Resource" id="Resource_eu63j"]
 script = ExtResource("1_jbcka")
@@ -14,6 +29,7 @@ metadata/_custom_type_script = "uid://bnovyu5ek3r0t"
 script = ExtResource("1_qrr4c")
 item_name = "Радио"
 disc = "Советское ебаное"
+component_slots = Array[ExtResource("1_qouq0")]([SubResource("Resource_cgc42"), SubResource("Resource_qouq0")])
 group = "Электронника"
 count = 1
 sprite = ExtResource("4_inct0")

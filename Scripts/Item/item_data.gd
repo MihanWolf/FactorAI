@@ -4,6 +4,8 @@ extends Resource
 @export var item_name: String
 @export var disc: String
 @export var q: Array[String] = ["Старый", "Поношенный", "Новый", "Безупречный"]
+@export var component_slots: Array[ComponentSlotData] = []
+@export var tags: Array[String] = [] 
 @export var group: String
 @export var count: int
 @export var sprite: Texture2D

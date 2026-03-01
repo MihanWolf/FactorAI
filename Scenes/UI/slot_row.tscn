@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://yb8gf1e5tfvb"]
+
+[node name="slot_row" type="HBoxContainer"]
+
+[node name="SlotLabel" type="Label" parent="."]
+layout_mode = 2
+
+[node name="ComponentLabel" type="Label" parent="."]
+layout_mode = 2
+
+[node name="SelectButton" type="Button" parent="."]
+layout_mode = 2

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckm2tj28dlwgq"]
+
+[ext_resource type="Script" uid="uid://du1vca0mbwiig" path="res://Scripts/disasseble_ui.gd" id="1_0wq0o"]
+[ext_resource type="Script" uid="uid://lg30fim2xybd" path="res://item_view.gd" id="2_xfu0l"]
+[ext_resource type="Script" uid="uid://bu4pnl4t0bgsh" path="res://Scripts/slot_row.gd" id="3_4o015"]
+
+[node name="disasseble_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0wq0o")
+
+[node name="ItemView" type="Node2D" parent="."]
+script = ExtResource("2_xfu0l")
+
+[node name="SlotList" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_4o015")
+
+[node name="ComponentInfo" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

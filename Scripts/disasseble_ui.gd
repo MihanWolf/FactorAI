@@ -12,8 +12,9 @@ signal component_placed(slot_id: String, component: ComponentInstance)
 var item_instance: ItemInstance
 var selected_slot_id: String = ""
 var player_tools: Array[String] = []  # инструменты у игрока
+var slot_row_scene: PackedScene = preload("res://Scenes/UI/slot_row.tscn")
 
-func init(instance: ItemInstance, tools: Array[String]) -> void:
+func init(instance: ItemInstance, tools: Array) -> void:
 	item_instance = instance
 	player_tools = tools
 	_rebuild_ui()
@@ -28,10 +29,10 @@ func _rebuild_slot_list() -> void:
 		child.queue_free()
 	
 	for slot in item_instance.data.component_slots:
-		var row = SlotRow.new()  # отдельная сцена
+		var row = slot_row_scene.instantiate()
+		slot_list.add_child(row)
 		row.init(slot, item_instance.components.get(slot.slot_id))
 		row.slot_selected.connect(_on_slot_selected)
-		slot_list.add_child(row)
 
 func _on_slot_selected(slot_id: String) -> void:
 	selected_slot_id = slot_id

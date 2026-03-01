@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://cr03hpsnl2aun"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=7 format=3 uid="uid://cr03hpsnl2aun"]
 
+[ext_resource type="Script" uid="uid://u7s2nsmlp06b" path="res://component_slot_data.gd" id="1_n0xbv"]
 [ext_resource type="Script" uid="uid://d2csex3mtid58" path="res://Scripts/Item/item_data.gd" id="1_vajc2"]
 [ext_resource type="Script" uid="uid://bnovyu5ek3r0t" path="res://Resources/disassemble_entry.gd" id="1_yjuf6"]
 [ext_resource type="Resource" uid="uid://nesiyd4fx7b2" path="res://Resources/materials/metal_resource.tres" id="2_7adhn"]

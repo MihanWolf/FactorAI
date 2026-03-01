@@ -1,7 +1,8 @@
+class_name GarbageUI
 extends CanvasLayer
 
 signal burn_pressed
-signal recycle_pressed
+signal disassemble_pressed
 signal take_pressed
 
 @onready var item_name_label = $Panel/VBoxContainer/Label
@@ -21,7 +22,7 @@ func _ready():
 	)
 	recycle_button.pressed.connect(func(): 
 		print("recycle button pressed")
-		recycle_pressed.emit()
+		disassemble_pressed.emit()
 	)
 	take_button.pressed.connect(func(): 
 		print("take button pressed")

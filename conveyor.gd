@@ -3,14 +3,17 @@ extends Node2D
 
 var item_scene: PackedScene = preload("res://Scenes/item.tscn")
 var item_database: ItemDatabase = preload("res://Resources/ItemDatabase.tres")
-var component_database: ComponentDatabase = preload("res://Resources/ComponentDatabase.tres")  # НОВОЕ
+var component_database: ComponentDatabase = preload("res://Resources/ComponentDatabase.tres")
 var item_ui_scene: PackedScene = preload("res://Scenes/UI/garbage_ui.tscn")
+var disassembly_ui_scene: PackedScene = preload("res://Scenes/UI/disasseble_ui.tscn")
 
 var current_item: Node2D = null
 var current_ui: CanvasLayer = null
+var current_disassembly_ui: Control = null
 var canvas_layer: CanvasLayer = null
 
 @onready var interaction_zone: InteractionZone = $Interaction_zone
+
 
 func _ready() -> void:
 	interaction_zone.area_entered.connect(_on_area_entered)
@@ -18,12 +21,13 @@ func _ready() -> void:
 	interaction_zone.player_entered.connect(_on_player_entered)
 	interaction_zone.player_interacted.connect(_on_player_interacted)
 	interaction_zone.player_exited.connect(_on_player_exited)
-	
 
 
 # ---- Спавн ----
 
 func spawn_item() -> void:
+	_close_disassembly_ui()
+	
 	if current_ui:
 		current_ui.queue_free()
 		current_ui = null
@@ -32,8 +36,8 @@ func spawn_item() -> void:
 		current_item = null
 
 	var data = item_database.items.pick_random()
-	var pool = component_database.build_pool()          # НОВОЕ
-	var instance = ItemInstance.create_random(data, pool)  # ИЗМЕНЕНО
+	var pool = component_database.build_pool()
+	var instance = ItemInstance.create_random(data, pool)
 
 	current_item = item_scene.instantiate()
 	current_item.item_instance = instance
@@ -50,14 +54,35 @@ func spawn_item() -> void:
 
 	current_ui.burn_pressed.connect(current_item.burn)
 	current_ui.take_pressed.connect(current_item.take)
-	current_ui.recycle_pressed.connect(_on_recycle_pressed)
+	current_ui.disassemble_pressed.connect(_on_disassemble_pressed)
 
 	current_item.item_removed.connect(spawn_item)
+
+	current_item.item_removed.connect(spawn_item)
+
+
+# ---- Разборка ----
+
+func _on_disassemble_pressed() -> void:
+	_close_disassembly_ui()
+	
+	current_disassembly_ui = disassembly_ui_scene.instantiate()
+	canvas_layer.add_child(current_disassembly_ui)
+	if not current_disassembly_ui.is_node_ready():
+		await current_disassembly_ui.ready
+	
+	current_disassembly_ui.init(current_item.item_instance, [])
+
+func _close_disassembly_ui() -> void:
+	if current_disassembly_ui:
+		current_disassembly_ui.queue_free()
+		current_disassembly_ui = null
+
+
 # ---- Взаимодействие с зоной ----
 
 func _on_player_entered() -> void:
 	pass
-
 
 func _on_player_interacted() -> void:
 	_update_ui_visibility()
@@ -66,6 +91,7 @@ func _on_player_interacted() -> void:
 		cart.inventory_ui.show()
 
 func _on_player_exited() -> void:
+	_close_disassembly_ui()
 	_update_ui_visibility()
 	var cart = _get_cart_in_zone()
 	if cart:
@@ -81,6 +107,7 @@ func _on_area_exited(area: Area2D) -> void:
 	if cart is Cart:
 		cart.inventory_ui.hide()
 
+
 # ---- Вспомогательное ----
 
 func _get_cart_in_zone() -> Cart:
@@ -95,7 +122,7 @@ func _on_recycle_pressed() -> void:
 		current_item.send_to_storage(cart.storage)
 	else:
 		print("Телега не в зоне")
-		
+
 func _update_ui_visibility() -> void:
 	if current_ui == null:
 		return

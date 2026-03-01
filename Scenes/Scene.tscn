@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b6mlfxqldfq6r" path="res://Scenes/Player/Player.tscn" id="2_o8g73"]
 [ext_resource type="PackedScene" uid="uid://88gkl2kqqwpq" path="res://Scenes/UI/inventory_ui.tscn" id="3_1o454"]
 [ext_resource type="PackedScene" uid="uid://c87px2k23tvcl" path="res://Scenes/cart.tscn" id="3_qswnl"]
-[ext_resource type="PackedScene" uid="uid://d1lfdpcpbb17f" path="res://Scenes/conveyor.tscn" id="5_v3fvj"]
+[ext_resource type="PackedScene" uid="uid://d1lfdpcpbb17f" path="res://Scenes/GarbageConveyor.tscn" id="5_v3fvj"]
 [ext_resource type="Script" uid="uid://c3acuqx27jdq6" path="res://test_items.gd" id="6_s7xl2"]
 [ext_resource type="Resource" uid="uid://de335ixcnra0h" path="res://Resources/ItemDatabase.tres" id="7_g6k5w"]
 [ext_resource type="Resource" uid="uid://bbs6y3eoe0o0" path="res://Resources/ComponentDatabase.tres" id="8_tn73o"]

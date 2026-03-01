@@ -37,7 +37,6 @@ func _rebuild_slot_list() -> void:
 func _on_slot_selected(slot_id: String) -> void:
 	selected_slot_id = slot_id
 	var comp = item_instance.components.get(slot_id)
-	component_info.display(comp, _can_remove(slot_id))
 
 func _can_remove(slot_id: String) -> bool:
 	var slot = item_instance._get_slot(slot_id)
@@ -58,4 +57,3 @@ func _on_component_changed(slot_id: String) -> void:
 	_rebuild_slot_list()
 	if slot_id == selected_slot_id:
 		var comp = item_instance.components.get(slot_id)
-		component_info.display(comp, _can_remove(slot_id))

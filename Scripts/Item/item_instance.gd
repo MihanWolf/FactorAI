@@ -8,7 +8,6 @@ var components: Dictionary = {}
 
 signal component_changed(slot_id: String)
 
-# component_pool — словарь: ComponentType → Array[ComponentData]
 static func create_random(from_data: ItemData, component_pool: Dictionary) -> ItemInstance:
 	var inst = ItemInstance.new()
 	inst.data = from_data
@@ -16,7 +15,12 @@ static func create_random(from_data: ItemData, component_pool: Dictionary) -> It
 	inst.disc = from_data.disc
 
 	for slot in from_data.component_slots:
-		var available: Array = component_pool.get(slot.accepted_types[0], [])
+		# Собираем подходящие компоненты по ВСЕМ accepted_types слота
+		var available: Array = []
+		for type in slot.accepted_types:
+			if component_pool.has(type):
+				available.append_array(component_pool[type])
+
 		if available.is_empty():
 			inst.components[slot.slot_id] = null
 			continue
@@ -51,6 +55,23 @@ func is_functional() -> bool:
 		if slot.required and components.get(slot.slot_id) == null:
 			return false
 	return true
+
+# Возвращает слоты отсортированные по слою — нужно для разборки
+func get_slots_by_layer() -> Array:
+	var sorted = data.component_slots.duplicate()
+	sorted.sort_custom(func(a, b): return a.sprite_layer_index > b.sprite_layer_index)
+	return sorted
+
+# Проверяет заблокирован ли слот другим компонентом сверху
+func is_slot_blocked(slot_id: String) -> bool:
+	var target = _get_slot(slot_id)
+	if target == null:
+		return false
+	for slot in data.component_slots:
+		if slot.sprite_layer_index > target.sprite_layer_index:
+			if components.get(slot.slot_id) != null:
+				return true
+	return false
 
 func _get_slot(slot_id: String) -> ComponentSlotData:
 	for slot in data.component_slots:

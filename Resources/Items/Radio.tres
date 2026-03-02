@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=9 format=3 uid="uid://cji4cy87qo48c"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=11 format=3 uid="uid://cji4cy87qo48c"]
 
 [ext_resource type="Script" uid="uid://bnovyu5ek3r0t" path="res://Resources/disassemble_entry.gd" id="1_jbcka"]
 [ext_resource type="Script" uid="uid://u7s2nsmlp06b" path="res://component_slot_data.gd" id="1_qouq0"]
 [ext_resource type="Script" uid="uid://d2csex3mtid58" path="res://Scripts/Item/item_data.gd" id="1_qrr4c"]
-[ext_resource type="Resource" uid="uid://nesiyd4fx7b2" path="res://Resources/materials/metal_resource.tres" id="2_mphyb"]
+[ext_resource type="Texture2D" uid="uid://b1cv8yv7kh4uo" path="res://Sprites/Details-Photoroom.png" id="3_qouq0"]
 [ext_resource type="Texture2D" uid="uid://be8u6o01ryjdf" path="res://Sprites/Radio-Photoroom.png" id="4_inct0"]
 
 [sub_resource type="Resource" id="Resource_cgc42"]
@@ -20,9 +20,22 @@ slot_label = "Провода"
 accepted_types = Array[int]([2])
 metadata/_custom_type_script = "uid://u7s2nsmlp06b"
 
+[sub_resource type="GDScript" id="GDScript_cgc42"]
+script/source = "class_name MaterialData
+extends Resource
+
+@export var material_name: String = \"\"
+@export var sprite: Texture2D
+"
+
+[sub_resource type="Resource" id="Resource_8hpt2"]
+script = SubResource("GDScript_cgc42")
+material_name = "Металл"
+sprite = ExtResource("3_qouq0")
+
 [sub_resource type="Resource" id="Resource_eu63j"]
 script = ExtResource("1_jbcka")
-material = ExtResource("2_mphyb")
+material = SubResource("Resource_8hpt2")
 metadata/_custom_type_script = "uid://bnovyu5ek3r0t"
 
 [resource]

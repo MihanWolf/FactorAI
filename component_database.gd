@@ -1,4 +1,3 @@
-# Scripts/Item/component_database.gd
 class_name ComponentDatabase
 extends Resource
 

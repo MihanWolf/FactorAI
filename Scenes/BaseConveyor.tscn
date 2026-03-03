@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://fodb1ld8dn88"]
 
-[ext_resource type="Script" uid="uid://qshijvneff0g" path="res://base_conveyor.gd" id="1_36xds"]
+[ext_resource type="Script" uid="uid://qshijvneff0g" path="res://Scripts/Conveyor/base_conveyor.gd" id="1_36xds"]
 
 [node name="BaseConveyor" type="Node2D"]
 script = ExtResource("1_36xds")

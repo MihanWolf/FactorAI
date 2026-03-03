@@ -1,35 +1,17 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=9 format=3 uid="uid://cr03hpsnl2aun"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://cr03hpsnl2aun"]
 
-[ext_resource type="Script" uid="uid://u7s2nsmlp06b" path="res://component_slot_data.gd" id="1_n0xbv"]
+[ext_resource type="Script" uid="uid://u7s2nsmlp06b" path="res://Scripts/Components/component_slot_data.gd" id="1_n0xbv"]
 [ext_resource type="Script" uid="uid://d2csex3mtid58" path="res://Scripts/Item/item_data.gd" id="1_vajc2"]
 [ext_resource type="Script" uid="uid://bnovyu5ek3r0t" path="res://Resources/disassemble_entry.gd" id="1_yjuf6"]
-[ext_resource type="Texture2D" uid="uid://b1cv8yv7kh4uo" path="res://Sprites/Details-Photoroom.png" id="3_n0xbv"]
 [ext_resource type="Texture2D" uid="uid://cysn5i5j2k4c4" path="res://Sprites/Posuda-Photoroom.png" id="4_qb7tj"]
-
-[sub_resource type="GDScript" id="GDScript_cgc42"]
-script/source = "class_name MaterialData
-extends Resource
-
-@export var material_name: String = \"\"
-@export var sprite: Texture2D
-"
-
-[sub_resource type="Resource" id="Resource_8hpt2"]
-script = SubResource("GDScript_cgc42")
-material_name = "Металл"
-sprite = ExtResource("3_n0xbv")
 
 [sub_resource type="Resource" id="Resource_nffyl"]
 script = ExtResource("1_yjuf6")
-material = SubResource("Resource_8hpt2")
 metadata/_custom_type_script = "uid://bnovyu5ek3r0t"
 
 [resource]
 script = ExtResource("1_vajc2")
 item_name = "Тарелка"
-disc = "Посуда хуюда"
-group = "Бытовуха"
-count = 1
 sprite = ExtResource("4_qb7tj")
 disassemble_materials = Array[ExtResource("1_yjuf6")]([SubResource("Resource_nffyl")])
 metadata/_custom_type_script = "uid://d2csex3mtid58"

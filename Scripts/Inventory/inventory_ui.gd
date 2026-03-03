@@ -1,3 +1,4 @@
+class_name InventoryUI
 extends Control
 
 @onready var title_label = $VBoxContainer/Label

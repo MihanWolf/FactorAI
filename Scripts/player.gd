@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _find_cart_in_range() -> Cart:
 	for node in get_tree().get_nodes_in_group("cart"):
-		if node.player_in_range:
+		if node.interaction_zone.player_inside:
 			return node
 	return null
 

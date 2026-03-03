@@ -1,8 +1,6 @@
 class_name InteractionZone
 extends Area2D
 
-@export var ui_scene: PackedScene
-
 signal player_interacted
 signal player_entered
 signal player_exited

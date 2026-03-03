@@ -1,11 +1,11 @@
 class_name InventorySlot
 extends Resource
 
-@export var accepted_type: ItemData.ItemType = ItemData.ItemType.ITEM
+@export var accepted_type: ItemData.ItemType = ItemData.ItemType.ANY
 var item: ItemInstance = null
 
 func can_accept(incoming: ItemInstance) -> bool:
-	if accepted_type == ItemData.ItemType.ITEM:
+	if accepted_type == ItemData.ItemType.ANY:
 		return true
 	return incoming.data.item_type == accepted_type
 

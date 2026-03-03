@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1lfdpcpbb17f"]
+[gd_scene load_steps=5 format=3 uid="uid://d1lfdpcpbb17f"]
 
-[ext_resource type="Script" uid="uid://cg75q5ign8v02" path="res://garbage_conveyor.gd" id="1_p60iw"]
+[ext_resource type="Script" uid="uid://cg75q5ign8v02" path="res://Scripts/Conveyor/garbage_conveyor.gd" id="1_p60iw"]
 [ext_resource type="Texture2D" uid="uid://b78vhc48r3w2b" path="res://Sprites/conveer-Photoroom.png" id="2_4lxgk"]
 [ext_resource type="PackedScene" uid="uid://nr8g1kv7i163" path="res://Scenes/interaction_zone.tscn" id="2_gfhwh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14pck"]
+size = Vector2(784, 720)
 
 [node name="GarbageConveyor" type="Node2D"]
 script = ExtResource("1_p60iw")
@@ -12,3 +15,9 @@ texture = ExtResource("2_4lxgk")
 
 [node name="Interaction_zone" parent="." instance=ExtResource("2_gfhwh")]
 scale = Vector2(20, 20)
+
+[node name="CartDirectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CartDirectionZone"]
+position = Vector2(-6, -18)
+shape = SubResource("RectangleShape2D_14pck")

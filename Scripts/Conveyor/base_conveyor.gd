@@ -10,6 +10,7 @@ var current_item: Node2D = null
 var current_instance: ItemInstance = null
 
 @onready var interaction_zone: InteractionZone = $Interaction_zone
+@onready var cart_detection_zone: Area2D = $CartDirectionZone
 
 
 func _ready() -> void:
@@ -29,9 +30,9 @@ func spawn_item() -> void:
 	current_item = ITEM_SCENE.instantiate()
 	current_item.item_instance = current_instance
 	current_item.position = global_position
-	get_tree().current_scene.add_child(current_item)
-
-	item_spawned.emit(current_instance)
+	get_tree().current_scene.add_child.call_deferred(current_item)
+	
+	item_spawned.emit.call_deferred(current_instance)
 
 
 # Внешний вызов — убрать предмет без действия
@@ -64,3 +65,10 @@ func _clear_current_item() -> void:
 		current_item.queue_free()
 		current_item = null
 	current_instance = null
+	
+func get_carts_in_range() -> Array:
+	var carts = []
+	for area in cart_detection_zone.get_overlapping_areas():
+		if area.get_parent() is Cart:
+			carts.append(area.get_parent())
+	return carts

@@ -9,8 +9,9 @@ func _ready() -> void:
 	if item_database == null or component_database == null:
 		push_error(name + ": назначь ItemDatabase и ComponentDatabase!")
 		return
-	super._ready()
 
+func start() -> void:
+	super._ready()
 
 func _create_item_instance() -> ItemInstance:
 	var pool := component_database.build_pool()
@@ -18,14 +19,12 @@ func _create_item_instance() -> ItemInstance:
 	return ItemInstance.create_random(data, pool)
 
 
-# Сжечь — просто убираем предмет, ничего не выдаём
 func burn() -> void:
 	if current_instance == null:
 		return
 	_on_item_processed()
 
 
-# Взять в инвентарь
 func take() -> bool:
 	if current_instance == null:
 		return false
@@ -37,7 +36,6 @@ func take() -> bool:
 	return true
 
 
-# Отправить в конкретное хранилище
 func send_to_storage(target_storage: Storage) -> bool:
 	if current_instance == null:
 		return false

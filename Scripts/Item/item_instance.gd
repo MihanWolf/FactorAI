@@ -3,7 +3,6 @@ extends Resource
 
 var data: ItemData
 var quality: String = ""
-var disc: String = ""
 var components: Dictionary = {}
 
 signal component_changed(slot_id: String)
@@ -11,8 +10,7 @@ signal component_changed(slot_id: String)
 static func create_random(from_data: ItemData, component_pool: Dictionary) -> ItemInstance:
 	var inst = ItemInstance.new()
 	inst.data = from_data
-	inst.quality = from_data.q.pick_random()
-	inst.disc = from_data.disc
+	inst.quality = from_data.quality_levels.pick_random()
 
 	for slot in from_data.component_slots:
 		# Собираем подходящие компоненты по ВСЕМ accepted_types слота

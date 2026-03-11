@@ -9,7 +9,7 @@ signal interact_pressed
 
 var zones_in_range: Array = []
 var carried_cart: Cart = null
-
+var _frozen: bool = false
 
 func _ready() -> void:
 	add_to_group("player")
@@ -20,13 +20,23 @@ func _find_cart_in_range() -> Cart:
 			return node
 	return null
 
+func freeze() -> void:
+	_frozen = true
+	velocity = Vector2.ZERO
+
+func unfreeze() -> void:
+	_frozen = false
 
 func _physics_process(delta: float) -> void:
+	if _frozen:
+		return
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * speed
 	move_and_slide()
 	
 func _unhandled_input(event: InputEvent) -> void:
+	if _frozen:
+		return
 	if event.is_action_pressed("interact"):  # E например
 		for zone in zones_in_range:
 			zone.try_interact()

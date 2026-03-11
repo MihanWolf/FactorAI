@@ -31,6 +31,19 @@ static func create_random(from_data: ItemData, component_pool: Dictionary) -> It
 		inst.components[slot.slot_id] = ComponentInstance.create_random(comp_data)
 
 	return inst
+	
+# Оборачивает снятый ComponentInstance в ItemInstance для хранения в Storage.
+static func wrap_component(comp: ComponentInstance) -> ItemInstance:
+	var inst := ItemInstance.new()
+	inst.component_data = comp
+	# Создаём минимальный ItemData на лету — только для совместимости со Storage.
+	var item_data := ItemData.new()
+	item_data.item_name = comp.data.component_name
+	item_data.item_type = ItemData.ItemType.COMPONENT
+	item_data.sprite = comp.data.sprite_layers[0] if not comp.data.sprite_layers.is_empty() else null
+
+	inst.data = item_data
+	return inst
 
 func place_component(slot_id: String, component: ComponentInstance) -> bool:
 	var slot = _get_slot(slot_id)

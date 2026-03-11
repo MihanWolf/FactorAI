@@ -17,5 +17,6 @@ enum ItemType {
 	CONSUMABLE,
 	EQUIP,
 	TOOL,
+	COMPONENT,
 	
 }

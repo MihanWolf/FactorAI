@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlk8udowlqnsp"]
+
+[ext_resource type="PackedScene" uid="uid://nr8g1kv7i163" path="res://Scenes/interaction_zone.tscn" id="1_gf8ij"]
+[ext_resource type="Script" uid="uid://csn5ihlbr14xh" path="res://Scripts/Disassembly/disassembly_table.gd" id="1_j8shg"]
+[ext_resource type="Texture2D" uid="uid://chrvgmaqf3hvy" path="res://Sprites/icon.svg" id="3_6sq3g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8shg"]
+size = Vector2(245, 221)
+
+[node name="DisassemblyTable" type="Node2D"]
+script = ExtResource("1_j8shg")
+
+[node name="Interaction_zone" parent="." instance=ExtResource("1_gf8ij")]
+position = Vector2(114, 86)
+scale = Vector2(10, 8.496)
+
+[node name="NearbyZone" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearbyZone"]
+position = Vector2(112.5, 100.5)
+shape = SubResource("RectangleShape2D_j8shg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(117, 92)
+texture = ExtResource("3_6sq3g")

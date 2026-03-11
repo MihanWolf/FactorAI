@@ -6,4 +6,4 @@ extends Resource
 @export var accepted_types: Array[ComponentData.ComponentType] = []
 @export var required: bool = true              # без этого предмет не работает
 @export var sprite_layer_index: int = 0
-@export var required_tool: String
+@export var required_tool: String = ""

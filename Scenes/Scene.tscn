@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dp5r0u1hxteql"]
+[gd_scene load_steps=11 format=3 uid="uid://dp5r0u1hxteql"]
 
 [ext_resource type="Script" uid="uid://dgilyn3ap76sb" path="res://Scripts/Scenes/scene.gd" id="1_jp0d8"]
 [ext_resource type="PackedScene" uid="uid://b6mlfxqldfq6r" path="res://Scenes/Player/Player.tscn" id="2_o8g73"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://de335ixcnra0h" path="res://Resources/ItemDatabase.tres" id="7_g6k5w"]
 [ext_resource type="Resource" uid="uid://bbs6y3eoe0o0" path="res://Resources/ComponentDatabase.tres" id="8_tn73o"]
 [ext_resource type="PackedScene" uid="uid://blaxnam04l4ma" path="res://Scenes/UI/conveyor_ui.tscn" id="9_g6k5w"]
+[ext_resource type="PackedScene" uid="uid://dlk8udowlqnsp" path="res://Scenes/disassembly_table.tscn" id="10_tn73o"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_jp0d8")
@@ -37,6 +38,10 @@ item_database = ExtResource("7_g6k5w")
 component_database = ExtResource("8_tn73o")
 
 [node name="GarbageConveyor" parent="." instance=ExtResource("5_v3fvj")]
-position = Vector2(707, 281)
+position = Vector2(780, 320)
 item_database = ExtResource("7_g6k5w")
 component_database = ExtResource("8_tn73o")
+
+[node name="DisassemblyTable" parent="." instance=ExtResource("10_tn73o")]
+position = Vector2(11.0000305, -499.00003)
+scale = Vector2(1.5250579, 1.6860064)

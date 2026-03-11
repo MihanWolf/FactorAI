@@ -25,12 +25,6 @@ func _ready():
 		storage.slots.append(slot)
 
 	inventory_ui.init(storage)
-	inventory_ui.show()
-	await get_tree().process_frame
-	_ui_size = inventory_ui.size
-	print("ui size: ", _ui_size)
-
-	inventory_ui.init(storage)
 	inventory_ui.hide()
 	
 	interaction_zone.player_interacted.connect(_on_interact)

@@ -1,6 +1,7 @@
 class_name ItemData
 extends Resource
 
+@export var id: String = ""
 @export var item_name: String
 @export var description: String
 @export var quality_levels: Array[String] = ["Старый", "Поношенный", "Новый", "Безупречный"]
